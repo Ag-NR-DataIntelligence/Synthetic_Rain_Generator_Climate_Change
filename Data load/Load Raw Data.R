@@ -4,7 +4,8 @@ library(padr)
 library(RcppRoll)
 
 # Loading processing functions
-source("https://raw.githubusercontent.com/Ag-NR-DataIntelligence/Synthetic_Rain_Generator_Climate_Change/master/Processing%20Functions.R")
+source("https://raw.githubusercontent.com/Ag-NR-DataIntelligence/Synthetic_Rain_Generator_Climate_Change/master/Data%20load/Processing%20Functions.R")
+
 Location_dt=tibble(USAF=c(725090,999999,724080,999999,725030),
                    NCDC=c(14739,13739,13739,14732,14732),
                    Loc=c("BOS","PHL","PHL","NYC","NYC"))

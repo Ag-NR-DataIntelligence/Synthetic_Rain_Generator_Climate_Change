@@ -1,4 +1,4 @@
-source("https://raw.githubusercontent.com/Ag-NR-DataIntelligence/Synthetic_Rain_Generator_Climate_Change/master/Data%20load/Processing%20Functions.R")
+
 source("https://raw.githubusercontent.com/Ag-NR-DataIntelligence/Synthetic_Rain_Generator_Climate_Change/master/Data%20load/Load%20Raw%20Data.R")
 source("https://raw.githubusercontent.com/Ag-NR-DataIntelligence/Synthetic_Rain_Generator_Climate_Change/master/Data%20load/Load%20Climate%20Change%20Temperature.R")
 source('https://raw.githubusercontent.com/ZyuAFD/SWRE_Project/master/Non_stationaryGenerator/Non_StationaryInterMFunctions.R')
@@ -17,7 +17,7 @@ for (j in 1:1)
   SyncPrecip[[1]] %>% mutate(Runid=j)
   SyncPrecip[[2]] %>% mutate(Runid=j)
   
-  write_rds(SyncPrecip,path=glue("Data\\SynDt{j}.rds"),compress="gz")
+  write_rds(SyncPrecip,path=glue("/home/ziwen.yu/ondemand/data/SynDt{j}.rds"),compress="gz")
   Sys.sleep(0.1)
   print(j)
 }
