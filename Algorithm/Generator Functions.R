@@ -2,6 +2,7 @@ SyncP_Generate=function(
   TempWidth = 3, #degree
   TimeWidth=15, #day
   GCM='MIROC',
+  StTime=ymd("2012-01-01"),
   FinalYear = ymd('2099-12-31'))
 {
   # Main Code ---------------------------------------------------------------
@@ -10,7 +11,7 @@ SyncP_Generate=function(
   
   PerdType = -1 #InPCE:1 DePCE:-1
   
-  StTime=ymd_hms("2012-01-01 00:00:00")
+  
   
   SynTime=StTime
   Press_Perd.syn=data.frame(Press_Evt_lab=NULL
