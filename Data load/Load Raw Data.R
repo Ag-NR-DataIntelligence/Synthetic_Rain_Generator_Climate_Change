@@ -105,6 +105,10 @@ Raw_dt_Evt %<>%
     c(2, 5, 8, 11),
     c("Spring (MAM)", "Summer (JJA)", "Fall (SON)")
   ))) %>%
-  replace_na(list(Season = "Winter (DJF)"))
+  replace_na(list(Season = "Winter (DJF)")) %>% 
+  mutate(SclPress_delta=scale(Sum_Press_Delta),
+         SclDur=scale(Dur)) %>% 
+  mutate(SclPress_delta_lag=lag(SclPress_delta),
+         SclDur_lag=lag(SclDur))
 
 rm(Climate_Dt,Curated_Climate_Dt,Dt,Location_dt)
