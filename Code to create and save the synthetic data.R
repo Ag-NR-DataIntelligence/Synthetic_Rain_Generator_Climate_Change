@@ -17,7 +17,25 @@ for (j in 1:1)
   SyncPrecip[[1]] %>% mutate(Runid=j)
   SyncPrecip[[2]] %>% mutate(Runid=j)
   
-  write_rds(SyncPrecip,path=glue("/home/ziwen.yu/ondemand/data/SynDt{j}.rds"),compress="gz")
+  write_rds(SyncPrecip,path=glue("/home/ziwen.yu/ondemand/data/Synthetic/SynDt{j}.rds"),compress="gz")
   Sys.sleep(0.1)
-  print(j)
+  print(glue("Syn-{j}"))
+}
+
+
+MonthT=MonthT_all %>% filter(Loc=="NYC",is.na(Emission))
+
+library(glue)
+library(magrittr)
+# GCM models to simulate "MIROC"
+set.seed(11)
+for (j in 1:100)
+{
+  SyncPrecip=SyncP_Generate(GCM = 'History',StTime=ymd("1970-01-01"),FinalYear=ymd("2011-01-01")) 
+  SyncPrecip[[1]] %>% mutate(Runid=j)
+  SyncPrecip[[2]] %>% mutate(Runid=j)
+  
+  write_rds(SyncPrecip,path=glue("/home/ziwen.yu/ondemand/data/HisValidate/SynHisDt{j}.rds"),compress="gz")
+  Sys.sleep(0.1)
+  print(glue("His-{j}"))
 }
