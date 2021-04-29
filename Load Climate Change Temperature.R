@@ -1,0 +1,16 @@
+# Climate change monthly Temperature data -------------------
+library(readxl)
+file="https://www.dropbox.com/s/ytagatrndira7in/Philadelphia%20Temperature.csv?dl=1"
+PHL_MonthT <- read_csv(file) %>% mutate(Loc="PHL")
+file="https://www.dropbox.com/s/slcv2huiovx8ary/BOS%20%20Temperature.csv?dl=1"
+BOS_MonthT <- read_csv(file) %>% mutate(Loc="BOS")
+file="https://www.dropbox.com/s/q5izlalq7lag7hh/NYC%20%20Temperature.csv?dl=1"
+NYC_MonthT <- read_csv(file) %>% mutate(Loc="NYC")
+
+MonthT_all=bind_rows(PHL_MonthT,BOS_MonthT,NYC_MonthT) %>% 
+  mutate(Date=ymd(Date)) %>% 
+  gather(.,Model,MonT,-Date,-Emission,-Loc)
+
+rm(BOS_MonthT)
+rm(PHL_MonthT)
+rm(NYC_MonthT)

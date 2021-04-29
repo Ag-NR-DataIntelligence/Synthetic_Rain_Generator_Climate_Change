@@ -1,4 +1,15 @@
 
+# Fill missing time stamps
+pad_loc=function(x)
+{
+  x %>% distinct(Loc) %>% pull(Loc)->Location
+  x %>% 
+    pad(interval="hour") %>% 
+    replace_na(list(Loc=Location)) %>% 
+    return
+}
+
+
 #Precip Evt Separation function ----------------------
 
 Precip_Evt_Sep= function(dt,IntE_P=4)
