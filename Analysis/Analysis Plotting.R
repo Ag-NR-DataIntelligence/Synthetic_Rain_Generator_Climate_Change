@@ -14,8 +14,8 @@ Line_cols=c("Validate"="azure3","Historic"='grey',"Synthetic"="black")
 Line_size=c("Validate"=3,"Historic"=2,"Synthetic"=1)
 Line_type=c("Validate"=3,"Historic"=2,"Synthetic"=1)
 
-
-bind_rows(HisValid_PCEs %>% 
+#  PD ~ EPC --------------------------
+Validate_history=bind_rows(HisValid_PCEs %>% 
             mutate(Sum_Press_Delta=as.numeric(Sum_Press_Delta),
                    Sum_Precip=as.numeric(Sum_Precip),
                    HisSync="Validate") %>%
@@ -38,14 +38,15 @@ bind_rows(HisValid_PCEs %>%
   xlab('Event Pressure Change (EPC) (hPa)')+
   Plot_theme
 
+ggsave(Validate_history,file="PD~EPC Validate with history.jpg", width=6,height=4.5)
 
-bind_rows(HisValid_PCEs %>% 
+Validate_future=bind_rows(HisValid_PCEs %>% 
             mutate(Sum_Press_Delta=as.numeric(Sum_Press_Delta),
                    Sum_Precip=as.numeric(Sum_Precip),
                    HisSync="Validate") %>%
             filter(Sum_Precip>0) %>% 
             select(Sum_Press_Delta,Sum_Precip,HisSync),
-          Sync %>% 
+          SyncPress_Perd %>% 
             mutate(Sum_Press_Delta=as.numeric(Sum_Press_Delta),
                    Sum_Precip=as.numeric(Sum_Precip),
                    HisSync="Historic") %>%
@@ -61,3 +62,5 @@ bind_rows(HisValid_PCEs %>%
   ylab('Precipitation Depth (PD) (mm) in log scale')+
   xlab('Event Pressure Change (EPC) (hPa)')+
   Plot_theme
+
+ggsave(Validate_future,file="PD~EPC Validate with future.jpg", width=6,height=4.5)
